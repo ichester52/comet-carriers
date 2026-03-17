@@ -1,8 +1,8 @@
 // api/quote.js — Vercel Serverless Function
-// Receives quote form submissions and sends an SMS to the owner via Twilio.
+// Receives quote form submissions and sends an email to the owner via Resend.
 // Deployed automatically by Vercel when placed in the /api directory.
 
-const twilio = require('twilio');
+const { Resend } = require('resend');
 
 // Required fields that must be present in every submission
 const REQUIRED_FIELDS = ['firstName', 'lastName', 'phone', 'moveDate', 'homeSize', 'pickupZip', 'dropoffZip'];
@@ -40,10 +40,12 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid zip code' });
   }
 
-  // ── Build SMS message ────────────────────────────────────────────────────
+  // ── Build email ──────────────────────────────────────────────────────────
   const notes = body.notes && body.notes.trim() ? body.notes.trim() : 'None';
 
-  const message = [
+  const subject = `New quote request from ${body.firstName} ${body.lastName}`;
+
+  const text = [
     `New quote request from ${body.firstName} ${body.lastName}`,
     `Phone: ${body.phone}`,
     `Date: ${body.moveDate} | Size: ${body.homeSize}`,
@@ -51,32 +53,31 @@ module.exports = async function handler(req, res) {
     `Notes: ${notes}`,
   ].join('\n');
 
-  // ── Send via Twilio ──────────────────────────────────────────────────────
+  // ── Send via Resend ──────────────────────────────────────────────────────
   // Credentials are set as environment variables in the Vercel dashboard.
   // Never commit these values — use .env.local for local dev.
 
-  const accountSid = process.env.TWILIO_ACCOUNT_SID;
-  const authToken  = process.env.TWILIO_AUTH_TOKEN;
-  const fromNumber = process.env.TWILIO_FROM_NUMBER;
-  const ownerPhone = process.env.OWNER_PHONE;
+  const apiKey    = process.env.RESEND_API_KEY;
+  const ownerEmail = process.env.OWNER_EMAIL;
 
-  if (!accountSid || !authToken || !fromNumber || !ownerPhone) {
-    console.error('Missing Twilio environment variables');
+  if (!apiKey || !ownerEmail) {
+    console.error('Missing Resend environment variables');
     return res.status(500).json({ error: 'Server configuration error' });
   }
 
   try {
-    const client = twilio(accountSid, authToken);
+    const resend = new Resend(apiKey);
 
-    await client.messages.create({
-      body: message,
-      from: fromNumber,
-      to:   ownerPhone,
+    await resend.emails.send({
+      from:    'Comet Carriers <onboarding@resend.dev>',
+      to:      ownerEmail,
+      subject: subject,
+      text:    text,
     });
 
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error('Twilio error:', err.message);
+    console.error('Resend error:', err.message);
     return res.status(500).json({ error: 'Failed to send notification' });
   }
 };
