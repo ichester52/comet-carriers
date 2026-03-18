@@ -48,6 +48,7 @@ module.exports = async function handler(req, res) {
   const text = [
     `New quote request from ${body.firstName} ${body.lastName}`,
     `Phone: ${body.phone}`,
+    `Service: ${body.serviceType}`,
     `Date: ${body.moveDate} | Size: ${body.homeSize}`,
     `${body.pickupZip} -> ${body.dropoffZip}`,
     `Notes: ${notes}`,
@@ -70,7 +71,7 @@ module.exports = async function handler(req, res) {
 
     await resend.emails.send({
       from:    'Comet Carriers <onboarding@resend.dev>',
-      to:      ownerEmail,
+      to:      [ownerEmail, 'jadonvc769@gmail.com'],
       subject: subject,
       text:    text,
     });

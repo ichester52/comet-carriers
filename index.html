@@ -404,15 +404,9 @@ footer{background:var(--brown);padding:60px 52px 28px;}
       <span>No surprises.</span>
     </h1>
     <p class="hero-desc">
-      Two people who show up on time, handle your belongings with care,
+      We show up on time, handle your belongings with care,
       and charge a fair price &mdash; not a corporate one.
     </p>
-    <div class="hero-chips">
-      <div class="chip">5-Star Service</div>
-      <div class="chip">Same-day response</div>
-      <div class="chip">2-person crew</div>
-      <div class="chip">No hidden fees</div>
-    </div>
     <div class="hero-proof reveal">
       <div class="proof-group">
         <span class="proof-val">5-Star</span>
@@ -449,19 +443,29 @@ footer{background:var(--brown);padding:60px 52px 28px;}
         <div class="frow">
           <div class="fg">
             <label for="firstName">First Name</label>
-            <input id="firstName" name="firstName" type="text" placeholder="Isaac" required>
+            <input id="firstName" name="firstName" type="text" required>
             <span class="field-err" id="err-firstName">Please enter your first name.</span>
           </div>
           <div class="fg">
             <label for="lastName">Last Name</label>
-            <input id="lastName" name="lastName" type="text" placeholder="Smith" required>
+            <input id="lastName" name="lastName" type="text" required>
             <span class="field-err" id="err-lastName">Please enter your last name.</span>
           </div>
         </div>
         <div class="fg">
           <label for="phone">Phone / Text</label>
-          <input id="phone" name="phone" type="tel" placeholder="(214) 555-0100" required>
+          <input id="phone" name="phone" type="tel" required>
           <span class="field-err" id="err-phone">Please enter a valid 10-digit phone number.</span>
+        </div>
+        <div class="fg">
+          <label for="serviceType">Service Type</label>
+          <select id="serviceType" name="serviceType" required>
+            <option value="">Select...</option>
+            <option value="A to B Moving">A to B Moving &mdash; we move your items from one location to another</option>
+            <option value="Load / Unload">Load / Unload &mdash; we load or unload your truck or container</option>
+            <option value="Storage">Storage &mdash; we pick up and store your items until you need them</option>
+          </select>
+          <span class="field-err" id="err-serviceType">Please select a service type.</span>
         </div>
         <div class="frow">
           <div class="fg">
@@ -485,24 +489,23 @@ footer{background:var(--brown);padding:60px 52px 28px;}
         <div class="frow">
           <div class="fg">
             <label for="pickupZip">Pickup Zip</label>
-            <input id="pickupZip" name="pickupZip" type="text" placeholder="75080" required maxlength="5">
+            <input id="pickupZip" name="pickupZip" type="text" required maxlength="5">
             <span class="field-err" id="err-pickupZip">Please enter a valid 5-digit zip code.</span>
           </div>
           <div class="fg">
             <label for="dropoffZip">Drop-off Zip</label>
-            <input id="dropoffZip" name="dropoffZip" type="text" placeholder="75219" required maxlength="5">
+            <input id="dropoffZip" name="dropoffZip" type="text" required maxlength="5">
             <span class="field-err" id="err-dropoffZip">Please enter a valid 5-digit zip code.</span>
           </div>
         </div>
         <div class="fg">
           <label for="notes">Anything we should know?</label>
-          <textarea id="notes" name="notes" rows="2" placeholder="Stairs, heavy items, fragile pieces..."></textarea>
+          <textarea id="notes" name="notes" rows="2"></textarea>
         </div>
         <button type="submit" class="form-btn" id="submitBtn">
           <span class="btn-text">Get My Free Quote</span>
           <span class="btn-spinner" aria-hidden="true"></span>
         </button>
-        <p class="form-note">No commitment. We respond within hours.</p>
       </form>
     </div>
   </div>
@@ -552,13 +555,13 @@ footer{background:var(--brown);padding:60px 52px 28px;}
       <div class="how-step reveal" style="transition-delay:.1s">
         <span class="step-num">Step 02</span>
         <h3>Confirm with a deposit</h3>
-        <p>A small deposit holds your date. It's deducted from the total on move day &mdash; this protects your spot and our schedule.</p>
+        <p>A small deposit holds your date. It's deducted from the total on move day &mdash; so your spot is locked in and nothing falls through.</p>
         <div class="step-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </div>
       <div class="how-step reveal" style="transition-delay:.2s">
         <span class="step-num">Step 03</span>
         <h3>We show up and handle it</h3>
-        <p>We arrive on time with the truck and all necessary equipment. You pay the agreed amount &mdash; nothing more. Card, Venmo, or cash.</p>
+        <p>We arrive on time with the truck and all necessary equipment. You pay the agreed amount &mdash; nothing more.</p>
       </div>
     </div>
   </div>
@@ -593,10 +596,10 @@ footer{background:var(--brown);padding:60px 52px 28px;}
       </div>
       <div class="svc-card reveal" style="transition-delay:.2s">
         <div>
-          <h3>Local &amp; Residential Moves</h3>
-          <p>Apartments, houses, offices &mdash; short or long haul across the DFW area. No move is too small and no neighborhood is out of reach.</p>
+          <h3>Between Leases &amp; Summer Storage</h3>
+          <p>Lease ending before your next one starts? Heading out for the summer? We'll pick up your furniture, keep it safe, and deliver it when you're ready.</p>
         </div>
-        <span class="svc-tag plain">Across DFW</span>
+        <span class="svc-tag plain">Short-Term</span>
       </div>
     </div>
   </div>
@@ -659,7 +662,7 @@ footer{background:var(--brown);padding:60px 52px 28px;}
 <div class="cta-band">
   <div class="cta-band-left">
     <h2>Ready to get moving?</h2>
-    <p>Free quote, no commitment &mdash; a real price from two people who will actually show up.</p>
+    <p>Free quote &mdash; a real price from movers who show up when they say they will.</p>
   </div>
   <button class="cta-band-btn" onclick="location.href='#quote'">Get My Free Quote</button>
 </div>
@@ -753,7 +756,7 @@ function showFieldError(id, show) {
 }
 
 function clearErrors() {
-  ['firstName','lastName','phone','moveDate','homeSize','pickupZip','dropoffZip'].forEach(id => {
+  ['firstName','lastName','phone','serviceType','moveDate','homeSize','pickupZip','dropoffZip'].forEach(id => {
     showFieldError(id, false);
   });
   errorBanner.classList.remove('show');
@@ -779,7 +782,8 @@ function validateForm(data) {
     if (picked < today) { showFieldError('moveDate', true); valid = false; }
   }
 
-  if (!data.homeSize) { showFieldError('homeSize', true); valid = false; }
+  if (!data.serviceType) { showFieldError('serviceType', true); valid = false; }
+  if (!data.homeSize)    { showFieldError('homeSize',    true); valid = false; }
 
   // Zip codes: exactly 5 digits
   if (!/^\d{5}$/.test(data.pickupZip))  { showFieldError('pickupZip',  true); valid = false; }
@@ -793,14 +797,15 @@ form.addEventListener('submit', async (e) => {
   clearErrors();
 
   const data = {
-    firstName:  form.firstName.value,
-    lastName:   form.lastName.value,
-    phone:      form.phone.value,
-    moveDate:   form.moveDate.value,
-    homeSize:   form.homeSize.value,
-    pickupZip:  form.pickupZip.value,
-    dropoffZip: form.dropoffZip.value,
-    notes:      form.notes.value,
+    firstName:   form.firstName.value,
+    lastName:    form.lastName.value,
+    phone:       form.phone.value,
+    serviceType: form.serviceType.value,
+    moveDate:    form.moveDate.value,
+    homeSize:    form.homeSize.value,
+    pickupZip:   form.pickupZip.value,
+    dropoffZip:  form.dropoffZip.value,
+    notes:       form.notes.value,
   };
 
   if (!validateForm(data)) return;
