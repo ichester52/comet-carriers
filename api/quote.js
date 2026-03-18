@@ -70,7 +70,7 @@ module.exports = async function handler(req, res) {
     const resend = new Resend(apiKey);
 
     await resend.emails.send({
-      from:    'Comet Carriers <onboarding@resend.dev>',
+      from:    'Comet Carriers <quotes@cometcarriersfw.com>',
       to:      [ownerEmail, 'jadonvc769@gmail.com'],
       subject: subject,
       text:    text,
